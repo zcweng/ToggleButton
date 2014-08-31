@@ -7,7 +7,12 @@ ToggleButton Widget For Android Devers
 <img src="https://github.com/zcweng/ToggleButton/blob/master/ToggleButtonSample/device-2014-08-31-231538.png"/>
 
 
-how to use
+<b>How To Use</b>
+
+
+
+        xmlns:toggle="http://schemas.android.com/apk/res/com.zcw.togglebutton.sample"
+
 
         <com.zcw.togglebutton.ToggleButton
             android:layout_width="54dp"
