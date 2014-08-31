@@ -1,0 +1,11 @@
+int attr borderWidth 0x7f010000
+int attr offBorderColor 0x7f010001
+int attr offColor 0x7f010002
+int attr onColor 0x7f010003
+int attr spotColor 0x7f010004
+int[] styleable ToggleButton { 0x7f010000, 0x7f010001, 0x7f010002, 0x7f010003, 0x7f010004 }
+int styleable ToggleButton_borderWidth 0
+int styleable ToggleButton_offBorderColor 1
+int styleable ToggleButton_offColor 2
+int styleable ToggleButton_onColor 3
+int styleable ToggleButton_spotColor 4
