@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ToggleButton">
+    	<attr name="borderWidth" format="dimension">
+    	</attr>
+    	<attr name="offBorderColor" format="reference|color">
+    	</attr>
+    	<attr name="offColor" format="reference|color">
+    	</attr>
+    	<attr name="onColor" format="reference|color">
+    	</attr>
+    	<attr name="spotColor" format="reference|color">
+    	</attr>
+    </declare-styleable>
+</resources>
