@@ -43,5 +43,8 @@ public class SpringUtil {
   public static double clamp(double value, double low, double high) {
     return Math.min(Math.max(value, low), high);
   }
+    public static int clamp(int value, int low, int high) {
+	    return Math.min(Math.max(value, low), high);
+	  }
 }
 
