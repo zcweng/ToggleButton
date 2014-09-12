@@ -53,6 +53,10 @@ public class ToggleButton extends View{
 	private float spotX;
 	/** 关闭时内部灰色带高度*/
 	private float offLineWidth;
+	/** */
+	private RectF rect = new RectF();
+	
+	private OnToggleChanged listener;
 	
 	private ToggleButton(Context context) {
 		super(context);
@@ -65,6 +69,17 @@ public class ToggleButton extends View{
 		super(context, attrs);
 		setup(attrs);
 	}
+	
+	@Override
+	protected void onDetachedFromWindow() {
+		super.onDetachedFromWindow();
+		spring.removeListener(springListener);
+	}
+	
+	public void onAttachedToWindow() {
+		super.onAttachedToWindow();
+		spring.addListener(springListener);
+	}
 
 	public void setup(AttributeSet attrs) {
 		paint = new Paint(Paint.ANTI_ALIAS_FLAG);
@@ -73,13 +88,12 @@ public class ToggleButton extends View{
 		
 		springSystem = SpringSystem.create();
 		spring = springSystem.createSpring();
-		spring.setSpringConfig(SpringConfig.fromOrigamiTensionAndFriction(50, 9));
+		spring.setSpringConfig(SpringConfig.fromOrigamiTensionAndFriction(50, 7));
 		
 		this.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				spring.setEndValue(toggleOn ? 0 : 1);
-				toggleOn = !toggleOn;
+				toggle();
 			}
 		});
 		
@@ -92,7 +106,43 @@ public class ToggleButton extends View{
 		typedArray.recycle();
 	}
 	
+	public void toggle() {
+		toggleOn = !toggleOn;
+		spring.setEndValue(toggleOn ? 1 : 0);
+		if(listener != null){
+			listener.onToggle(toggleOn);
+		}
+	}
 	
+	public void toggleOn() {
+		setToggleOn();
+		if(listener != null){
+			listener.onToggle(toggleOn);
+		}
+	}
+	
+	public void toggleOff() {
+		setToggleOff();
+		if(listener != null){
+			listener.onToggle(toggleOn);
+		}
+	}
+	
+	/**
+	 * 设置显示成打开样式，不会触发toggle事件
+	 */
+	public void setToggleOn() {
+		toggleOn = true;
+		spring.setEndValue(toggleOn ? 1 : 0);
+	}
+	
+	/**
+	 * 设置显示成关闭样式，不会触发toggle事件
+	 */
+	public void setToggleOff() {
+		toggleOn = false;
+		spring.setEndValue(toggleOn ? 1 : 0);
+	}
 	
 	@Override
 	protected void onLayout(boolean changed, int left, int top, int right,
@@ -110,8 +160,6 @@ public class ToggleButton extends View{
 		spotSize = height - 4 * borderWidth;
 		spotX = spotMinX;
 		offLineWidth = 0;
-		
-		spring.addListener(springListener);
 	}
 	
 	
@@ -124,6 +172,7 @@ public class ToggleButton extends View{
 			spotX = mapToggleX;
 			
 			float mapOffLineWidth = (float) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, 10, spotSize);
+			
 			offLineWidth = mapOffLineWidth;
 			
 			final int fb = Color.blue(onColor);
@@ -134,9 +183,13 @@ public class ToggleButton extends View{
 			final int tr = Color.red(offBorderColor);
 			final int tg = Color.green(offBorderColor);
 			
-			final int sb = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fb, tb);
-			final int sr = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fr, tr);
-			final int sg = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fg, tg);
+			int sb = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fb, tb);
+			int sr = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fr, tr);
+			int sg = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fg, tg);
+			
+			sb = SpringUtil.clamp(sb, 0, 255);
+			sr = SpringUtil.clamp(sr, 0, 255);
+			sg = SpringUtil.clamp(sg, 0, 255);
 			
 			borderColor = Color.rgb(sr, sg, sb);
 			
@@ -147,25 +200,68 @@ public class ToggleButton extends View{
 	
 	@Override
 	public void draw(Canvas canvas) {
+		
+		/*
 		final int height = getHeight();
-		//
+		//绘制背景（边框）
 		paint.setStrokeWidth(height);
 		paint.setColor(borderColor);
 		canvas.drawLine(startX, centerY, endX, centerY, paint);
-		//
+		//绘制灰色带
 		if(offLineWidth > 0){
 			paint.setStrokeWidth(offLineWidth);
 			paint.setColor(offColor);
 			canvas.drawLine(spotX, centerY, endX, centerY, paint);
 		}
-		//
+		//spot的边框
 		paint.setStrokeWidth(height);
 		paint.setColor(borderColor);
 		canvas.drawLine(spotX - 1, centerY, spotX + 1.1f, centerY, paint);
-		//
+		//spot
 		paint.setStrokeWidth(spotSize);
 		paint.setColor(spotColor);
 		canvas.drawLine(spotX, centerY, spotX + 0.1f, centerY, paint);
+		*/
+		
+		
+		//
+		rect.set(0, 0, getWidth(), getHeight());
+		paint.setColor(borderColor);
+		canvas.drawRoundRect(rect, radius, radius, paint);
+		
+		if(offLineWidth > 0){
+			final float cy = offLineWidth * 0.5f;
+			rect.set(spotX - cy, centerY - cy, endX + cy, centerY + cy);
+			paint.setColor(offColor);
+			canvas.drawRoundRect(rect, cy, cy, paint);
+		}
+		
+		rect.set(spotX - 1 - radius, centerY - radius, spotX + 1.1f + radius, centerY + radius);
+		paint.setColor(borderColor);
+		canvas.drawRoundRect(rect, radius, radius, paint);
+		
+		final float spotR = spotSize * 0.5f;
+		rect.set(spotX - spotR, centerY - spotR, spotX + spotR, centerY + spotR);
+		paint.setColor(spotColor);
+		canvas.drawRoundRect(rect, spotR, spotR, paint);
+		
+	}
+	
+	
+	/**
+	 * @author ThinkPad
+	 *
+	 */
+	public interface OnToggleChanged{
+		/**
+		 * @param on
+		 */
+		public void onToggle(boolean on);
+	}
+
+
+	public void setOnToggleChanged(OnToggleChanged onToggleChanged) {
+		listener = onToggleChanged;
 	}
 	
 }
