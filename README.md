@@ -1,7 +1,7 @@
 ToggleButton
 ============
 
-ToggleButton Widget For Android Devers
+ToggleButton Widget For Android Developers
 
 <img src="https://github.com/zcweng/ToggleButton/blob/master/ToggleButtonSample/21879.gif"/>
 
