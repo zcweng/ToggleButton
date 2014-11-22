@@ -1,0 +1,19 @@
+.project
+.classpath
+.settings/
+bin/
+gen/
+
+# vim
+
+*~
+*.sw*
+
+# git
+
+*.orig
+
+build/
+.gradle/
+
+local.properties
