@@ -9,6 +9,7 @@ import android.graphics.Paint.Cap;
 import android.graphics.Paint.Style;
 import android.util.AttributeSet;
 import android.view.View;
+import android.graphics.RectF;
 
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
@@ -187,16 +188,20 @@ public class ToggleButton extends View{
 			int sr = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fr, tr);
 			int sg = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fg, tg);
 			
-			sb = SpringUtil.clamp(sb, 0, 255);
-			sr = SpringUtil.clamp(sr, 0, 255);
-			sg = SpringUtil.clamp(sg, 0, 255);
+			sb = clamp(sb, 0, 255);
+			sr = clamp(sr, 0, 255);
+			sg = clamp(sg, 0, 255);
 			
 			borderColor = Color.rgb(sr, sg, sb);
 			
 			postInvalidate();
 		}
 	};
-	
+
+	private int clamp(int value, int low, int high) {
+		return Math.min(Math.max(value, low), high);
+	}
+
 	
 	@Override
 	public void draw(Canvas canvas) {
