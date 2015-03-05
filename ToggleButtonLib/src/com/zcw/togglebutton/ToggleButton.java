@@ -1,15 +1,19 @@
 package com.zcw.togglebutton;
 
 import android.content.Context;
+import android.content.res.Resources;
 import android.content.res.TypedArray;
 import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Cap;
 import android.graphics.Paint.Style;
-import android.util.AttributeSet;
-import android.view.View;
 import android.graphics.RectF;
+import android.util.AttributeSet;
+import android.util.TypedValue;
+import android.view.View;
+import android.view.View.OnClickListener;
+import android.widget.TextView;
 
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
@@ -171,6 +175,32 @@ public class ToggleButton extends View{
 		}
 	}
 	
+	
+	@Override
+	protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+		
+		final int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+		final int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+		
+		int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+		int heightSize = MeasureSpec.getSize(heightMeasureSpec);
+		
+		Resources r = Resources.getSystem();
+		if(widthMode == MeasureSpec.UNSPECIFIED || widthMode == MeasureSpec.AT_MOST){
+			widthSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 50, r.getDisplayMetrics());
+			widthMeasureSpec = MeasureSpec.makeMeasureSpec(widthSize, MeasureSpec.EXACTLY);
+		}
+		
+		if(heightSize == MeasureSpec.UNSPECIFIED || heightSize == MeasureSpec.AT_MOST){
+			heightSize = (int) TypedValue.applyDimension(TypedValue.COMPLEX_UNIT_DIP, 30, r.getDisplayMetrics());
+			heightMeasureSpec = MeasureSpec.makeMeasureSpec(heightSize, MeasureSpec.EXACTLY);
+		}
+		
+		
+		super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+	}
+	
+	
 	@Override
 	protected void onLayout(boolean changed, int left, int top, int right,
 			int bottom) {
@@ -178,6 +208,7 @@ public class ToggleButton extends View{
 		
 		final int width = getWidth();
 		final int height = getHeight();
+		
 		radius = Math.min(width, height) * 0.5f;
 		centerY = radius;
 		startX = radius;
