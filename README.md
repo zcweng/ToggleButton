@@ -27,6 +27,8 @@ ToggleButton Widget For Android Developers
         
         //切换开关
         toggleBtn.toggle();
+        //切换无动画
+        toggleBtn.toggle(false);
         //开关切换事件
         toggleBtn.setOnToggleChanged(new OnToggleChanged(){
                 @Override
@@ -36,7 +38,11 @@ ToggleButton Widget For Android Developers
         
         toggleBtn.setToggleOn();
         toggleBtn.setToggleOff();
+        //无动画切换
+        toggleBtn.setToggleOn(false);
+        toggleBtn.setToggleOff(false);
         
+Default Size:width=50dp,height=30dp.
 
 
 <img src="https://github.com/zcweng/ToggleButton/blob/master/ToggleButtonSample/device-2014-08-31-231538.png" width="300" height="500"/>
