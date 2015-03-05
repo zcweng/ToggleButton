@@ -110,8 +110,13 @@ public class ToggleButton extends View{
 	}
 	
 	public void toggle() {
+		toggle(true);
+	}
+	
+	public void toggle(boolean animate) {
 		toggleOn = !toggleOn;
-		spring.setEndValue(toggleOn ? 1 : 0);
+		takeEffect(animate);
+		
 		if(listener != null){
 			listener.onToggle(toggleOn);
 		}
@@ -135,16 +140,35 @@ public class ToggleButton extends View{
 	 * 设置显示成打开样式，不会触发toggle事件
 	 */
 	public void setToggleOn() {
+		setToggleOn(true);
+	}
+	
+	/**
+	 * @param animate
+	 */
+	public void setToggleOn(boolean animate){
 		toggleOn = true;
-		spring.setEndValue(toggleOn ? 1 : 0);
+		takeEffect(animate);
 	}
 	
 	/**
 	 * 设置显示成关闭样式，不会触发toggle事件
 	 */
 	public void setToggleOff() {
+		setToggleOff(true);
+	}
+	
+	public void setToggleOff(boolean animate) {
 		toggleOn = false;
-		spring.setEndValue(toggleOn ? 1 : 0);
+		takeEffect(animate);
+	}
+	
+	private void takeEffect(boolean animate) {
+		if(animate){
+			spring.setEndValue(toggleOn ? 1 : 0);
+		}else{
+			calculateEffect(toggleOn ? 1 : 0);
+		}
 	}
 	
 	@Override
@@ -170,33 +194,7 @@ public class ToggleButton extends View{
 		@Override
 		public void onSpringUpdate(Spring spring) {
 			final double value = spring.getCurrentValue();
-			
-			final float mapToggleX = (float) SpringUtil.mapValueFromRangeToRange(value, 0, 1, spotMinX, spotMaxX);
-			spotX = mapToggleX;
-			
-			float mapOffLineWidth = (float) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, 10, spotSize);
-			
-			offLineWidth = mapOffLineWidth;
-			
-			final int fb = Color.blue(onColor);
-			final int fr = Color.red(onColor);
-			final int fg = Color.green(onColor);
-			
-			final int tb = Color.blue(offBorderColor);
-			final int tr = Color.red(offBorderColor);
-			final int tg = Color.green(offBorderColor);
-			
-			int sb = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fb, tb);
-			int sr = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fr, tr);
-			int sg = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fg, tg);
-			
-			sb = clamp(sb, 0, 255);
-			sr = clamp(sr, 0, 255);
-			sg = clamp(sg, 0, 255);
-			
-			borderColor = Color.rgb(sr, sg, sb);
-			
-			postInvalidate();
+			calculateEffect(value);
 		}
 	};
 
@@ -207,30 +205,6 @@ public class ToggleButton extends View{
 	
 	@Override
 	public void draw(Canvas canvas) {
-		
-		/*
-		final int height = getHeight();
-		//绘制背景（边框）
-		paint.setStrokeWidth(height);
-		paint.setColor(borderColor);
-		canvas.drawLine(startX, centerY, endX, centerY, paint);
-		//绘制灰色带
-		if(offLineWidth > 0){
-			paint.setStrokeWidth(offLineWidth);
-			paint.setColor(offColor);
-			canvas.drawLine(spotX, centerY, endX, centerY, paint);
-		}
-		//spot的边框
-		paint.setStrokeWidth(height);
-		paint.setColor(borderColor);
-		canvas.drawLine(spotX - 1, centerY, spotX + 1.1f, centerY, paint);
-		//spot
-		paint.setStrokeWidth(spotSize);
-		paint.setColor(spotColor);
-		canvas.drawLine(spotX, centerY, spotX + 0.1f, centerY, paint);
-		*/
-		
-		
 		//
 		rect.set(0, 0, getWidth(), getHeight());
 		paint.setColor(borderColor);
@@ -254,6 +228,37 @@ public class ToggleButton extends View{
 		
 	}
 	
+	/**
+	 * @param value
+	 */
+	private void calculateEffect(final double value) {
+		final float mapToggleX = (float) SpringUtil.mapValueFromRangeToRange(value, 0, 1, spotMinX, spotMaxX);
+		spotX = mapToggleX;
+		
+		float mapOffLineWidth = (float) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, 10, spotSize);
+		
+		offLineWidth = mapOffLineWidth;
+		
+		final int fb = Color.blue(onColor);
+		final int fr = Color.red(onColor);
+		final int fg = Color.green(onColor);
+		
+		final int tb = Color.blue(offBorderColor);
+		final int tr = Color.red(offBorderColor);
+		final int tg = Color.green(offBorderColor);
+		
+		int sb = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fb, tb);
+		int sr = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fr, tr);
+		int sg = (int) SpringUtil.mapValueFromRangeToRange(1 - value, 0, 1, fg, tg);
+		
+		sb = clamp(sb, 0, 255);
+		sr = clamp(sr, 0, 255);
+		sg = clamp(sg, 0, 255);
+		
+		borderColor = Color.rgb(sr, sg, sb);
+		
+		postInvalidate();
+	}
 	
 	/**
 	 * @author ThinkPad
