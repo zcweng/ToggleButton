@@ -42,6 +42,9 @@ ToggleButton Widget For Android Developers
         toggleBtn.setToggleOn(false);
         toggleBtn.setToggleOff(false);
         
+        //禁用动画
+        setAnimate(false);
+        
 Default Size:width=50dp,height=30dp.
 
 
