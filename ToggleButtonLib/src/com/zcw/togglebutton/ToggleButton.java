@@ -12,8 +12,6 @@ import android.graphics.RectF;
 import android.util.AttributeSet;
 import android.util.TypedValue;
 import android.view.View;
-import android.view.View.OnClickListener;
-import android.widget.TextView;
 
 import com.facebook.rebound.SimpleSpringListener;
 import com.facebook.rebound.Spring;
@@ -60,6 +58,8 @@ public class ToggleButton extends View{
 	private float offLineWidth;
 	/** */
 	private RectF rect = new RectF();
+	/** 默认使用动画*/
+	private boolean defaultAnimate = true;
 	
 	private OnToggleChanged listener;
 	
@@ -98,7 +98,7 @@ public class ToggleButton extends View{
 		this.setOnClickListener(new OnClickListener() {
 			@Override
 			public void onClick(View arg0) {
-				toggle();
+				toggle(defaultAnimate);
 			}
 		});
 		
@@ -108,6 +108,7 @@ public class ToggleButton extends View{
 		spotColor = typedArray.getColor(R.styleable.ToggleButton_spotColor, spotColor);
 		offColor = typedArray.getColor(R.styleable.ToggleButton_offColor, offColor);
 		borderWidth = typedArray.getDimensionPixelSize(R.styleable.ToggleButton_borderWidth, borderWidth);
+		defaultAnimate = typedArray.getBoolean(R.styleable.ToggleButton_animate, defaultAnimate);
 		typedArray.recycle();
 		
 		borderColor = offBorderColor;
@@ -305,6 +306,13 @@ public class ToggleButton extends View{
 
 	public void setOnToggleChanged(OnToggleChanged onToggleChanged) {
 		listener = onToggleChanged;
+	}
+	
+	public boolean isAnimate() {
+		return defaultAnimate;
+	}
+	public void setAnimate(boolean animate) {
+		this.defaultAnimate = animate;
 	}
 	
 }
