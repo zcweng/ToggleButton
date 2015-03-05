@@ -105,6 +105,8 @@ public class ToggleButton extends View{
 		offColor = typedArray.getColor(R.styleable.ToggleButton_offColor, offColor);
 		borderWidth = typedArray.getDimensionPixelSize(R.styleable.ToggleButton_borderWidth, borderWidth);
 		typedArray.recycle();
+		
+		borderColor = offBorderColor;
 	}
 	
 	public void toggle() {
