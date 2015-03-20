@@ -217,7 +217,7 @@ public class ToggleButton extends View{
 		spotMinX = startX + borderWidth;
 		spotMaxX = endX - borderWidth;
 		spotSize = height - 4 * borderWidth;
-		spotX = spotMinX;
+		spotX = toggleOn ? spotMaxX : spotMinX;
 		offLineWidth = 0;
 	}
 	
