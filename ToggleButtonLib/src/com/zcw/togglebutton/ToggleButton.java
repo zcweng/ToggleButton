@@ -172,6 +172,8 @@ public class ToggleButton extends View{
 		if(animate){
 			spring.setEndValue(toggleOn ? 1 : 0);
 		}else{
+			//这里没有调用spring，所以spring里的当前值没有变更，这里要设置一下，同步两边的当前值
+			spring.setCurrentValue(toggleOn ? 1 : 0);
 			calculateEffect(toggleOn ? 1 : 0);
 		}
 	}
