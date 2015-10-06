@@ -60,7 +60,10 @@ public class ToggleButton extends View{
 	private RectF rect = new RectF();
 	/** 默认使用动画*/
 	private boolean defaultAnimate = true;
-	
+
+	/** 是否默认处于打开状态*/
+	private boolean isDefaultOn = false;
+
 	private OnToggleChanged listener;
 	
 	private ToggleButton(Context context) {
@@ -109,9 +112,14 @@ public class ToggleButton extends View{
 		offColor = typedArray.getColor(R.styleable.ToggleButton_offColor, offColor);
 		borderWidth = typedArray.getDimensionPixelSize(R.styleable.ToggleButton_borderWidth, borderWidth);
 		defaultAnimate = typedArray.getBoolean(R.styleable.ToggleButton_animate, defaultAnimate);
+		isDefaultOn = typedArray.getBoolean(R.styleable.ToggleButton_isDefaultOn, isDefaultOn);
 		typedArray.recycle();
 		
 		borderColor = offBorderColor;
+
+		if (isDefaultOn) {
+			toggleOn();
+		}
 	}
 	
 	public void toggle() {
