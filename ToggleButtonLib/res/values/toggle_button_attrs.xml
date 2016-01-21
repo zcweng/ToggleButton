@@ -13,5 +13,7 @@
     	</attr>
     	<attr name="animate" format="reference|boolean">
     	</attr>
+	    <attr name="isDefaultOn" format="reference|boolean">
+	    </attr>
     </declare-styleable>
 </resources>
