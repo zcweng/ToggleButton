@@ -6,7 +6,7 @@ ToggleButton Widget For Android Developers
 <img src="https://github.com/zcweng/ToggleButton/blob/master/ToggleButtonSample/21879.gif"/>
 
 <b>How To Use</b>
-
+```xml
         xmlns:toggle="http://schemas.android.com/apk/res-auto"
 
 
@@ -19,10 +19,9 @@ ToggleButton Widget For Android Developers
             toggle:borderWidth="2dp"
             android:layout_height="30dp" >
         </com.zcw.togglebutton.ToggleButton>
+```
 
-
-        
-        
+```java
         ToggleButton toggleBtn;
         
         //切换开关
@@ -44,7 +43,7 @@ ToggleButton Widget For Android Developers
         
         //禁用动画
         toggleBtn.setAnimate(false);
-        
+```
 Default Size:width=50dp,height=30dp.
 
 
