@@ -52,5 +52,5 @@ Default Size:width=50dp,height=30dp.
 <b>引用方式</b>
 ```
 2016/8/3 17:04:53 
-compile 'com.zcw:ToggleButtonLib:1.0.0'
+compile 'com.zcw:togglebuttonlib:1.0.0'
 ```
