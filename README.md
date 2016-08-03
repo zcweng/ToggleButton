@@ -48,3 +48,9 @@ Default Size:width=50dp,height=30dp.
 
 
 <img src="https://github.com/zcweng/ToggleButton/blob/master/ToggleButtonSample/device-2014-08-31-231538.png" width="300" height="500"/>
+
+<b>引用方式</b>
+```
+2016/8/3 17:04:53 
+compile 'com.zcw:ToggleButtonLib:1.0.0'
+```
