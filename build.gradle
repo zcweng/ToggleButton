@@ -22,7 +22,7 @@ task clean(type: Delete) {
 
 ext {
     groupName = 'com.zcw'
-    artifactName = 'ToggleButton'
+    artifactName = 'togglebutton'
     artifactDescription = 'ToggleButton'
     artifactLabels = ['togglebutton']
     releaseVersionCode = 1
