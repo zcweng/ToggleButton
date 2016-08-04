@@ -88,6 +88,6 @@
     </content>
     <orderEntry type="jdk" jdkName="Android API 22 Platform" jdkType="Android SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
-    <orderEntry type="module" module-name="ToggleButtonLib" exported="" />
+    <orderEntry type="module" module-name="togglebutton" exported="" />
   </component>
 </module>

@@ -12,11 +12,11 @@ ToggleButton Widget For Android Developers
 
         <com.zcw.togglebutton.ToggleButton
             android:layout_width="54dp"
-            toggle:onColor="#f00"
-            toggle:offColor="#ddd"
-            toggle:spotColor="#00f"
-            toggle:offBorderColor="#000"
-            toggle:borderWidth="2dp"
+            toggle:tbOnColor="#f00"
+            toggle:tbOffColor="#ddd"
+            toggle:tbSpotColor="#00f"
+            toggle:tbOffBorderColor="#000"
+            toggle:tbBorderWidth="2dp"
             android:layout_height="30dp" >
         </com.zcw.togglebutton.ToggleButton>
 ```
