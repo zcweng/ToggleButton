@@ -1,2 +1,2 @@
-include 'togglebutton'
+include 'togglebutton-library'
 include 'ToggleButtonSample'
