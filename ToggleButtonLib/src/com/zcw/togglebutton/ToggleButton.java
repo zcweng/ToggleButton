@@ -228,7 +228,9 @@ public class ToggleButton extends View{
 		spotMaxX = endX - borderWidth;
 		spotSize = height - 4 * borderWidth;
 		spotX = toggleOn ? spotMaxX : spotMinX;
-		offLineWidth = 0;
+		// fix:这里应该初始化为spotSize而不是0。否则会导致初始显示默认为off时，填充颜色为offBorderColor,
+		// 第一次点击时中间区域突变为白色（offColor），然后才随着spot右移范围变小
+		offLineWidth = spotSize;
 	}
 	
 	
