@@ -1,9 +1,5 @@
 package com.facebook.rebound;
 
-/**
- * Helper math util to convert tension & friction values from the Origami design tool to values that
- * the spring system needs.
- */
 public class OrigamiValueConverter {
 
   public static double tensionFromOrigamiValue(double oValue) {

@@ -1,13 +1,12 @@
-apply plugin: 'android-sdk-manager'
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile project(':ToggleButtonLib')
+    compile project(':togglebutton-library')
 }
 
 android {
-    compileSdkVersion 21
-    buildToolsVersion '21.1.0'
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
 
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_7
@@ -16,7 +15,7 @@ android {
 
     defaultConfig {
         minSdkVersion 8
-        targetSdkVersion 21
+        targetSdkVersion 22
     }
 
     sourceSets {
@@ -35,5 +34,3 @@ android {
         abortOnError false
     }
 }
-
-apply from: 'https://raw.github.com/chrisbanes/gradle-mvn-push/master/gradle-mvn-push.gradle'

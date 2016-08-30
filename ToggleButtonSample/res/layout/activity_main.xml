@@ -1,71 +1,70 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:toggle="http://schemas.android.com/apk/res/com.zcw.togglebutton.sample"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="#fff"
-    android:orientation="vertical"
-    android:padding="20dp" >
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              xmlns:toggle="http://schemas.android.com/apk/res-auto"
+              android:background="#fff"
+              android:orientation="vertical"
+              android:padding="20dp">
 
     <LinearLayout
         android:id="@+id/group1"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content">
 
         <com.zcw.togglebutton.ToggleButton
             android:layout_width="54dp"
-            android:layout_height="30dp" >
+            android:layout_height="30dp">
         </com.zcw.togglebutton.ToggleButton>
-        
+
         <com.zcw.togglebutton.ToggleButton
-            android:layout_marginLeft="20dp"
             android:layout_width="54dp"
-            android:layout_height="30dp" >
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp">
         </com.zcw.togglebutton.ToggleButton>
     </LinearLayout>
 
     <LinearLayout
-        android:layout_marginTop="10dp"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" >
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp">
 
         <com.zcw.togglebutton.ToggleButton
             android:layout_width="54dp"
-            toggle:onColor="#f00"
-            toggle:offColor="#ddd"
-            toggle:spotColor="#00f"
-            toggle:offBorderColor="#000"
-            toggle:borderWidth="2dp"
-            android:layout_height="30dp" >
+            android:layout_height="30dp"
+            toggle:tbBorderWidth="2dp"
+            toggle:tbOffBorderColor="#000"
+            toggle:tbOffColor="#ddd"
+            toggle:tbOnColor="#f00"
+            toggle:tbSpotColor="#00f">
         </com.zcw.togglebutton.ToggleButton>
-        
+
         <com.zcw.togglebutton.ToggleButton
-            android:layout_marginLeft="20dp"
             android:layout_width="54dp"
-            toggle:onColor="#f00"
-            toggle:offColor="#ddd"
-            toggle:spotColor="#00f"
-            toggle:offBorderColor="#000"
-            toggle:borderWidth="2dp"
-            android:layout_height="30dp" >
+            android:layout_height="30dp"
+            android:layout_marginLeft="20dp"
+            toggle:tbBorderWidth="2dp"
+            toggle:tbOffBorderColor="#000"
+            toggle:tbOffColor="#ddd"
+            toggle:tbOnColor="#f00"
+            toggle:tbSpotColor="#00f">
         </com.zcw.togglebutton.ToggleButton>
     </LinearLayout>
-    
-    
-    
+
+
     <com.zcw.togglebutton.ToggleButton
         android:layout_width="70dp"
         android:layout_height="30dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"/>
 
     <com.zcw.togglebutton.ToggleButton
         android:layout_width="90dp"
         android:layout_height="40dp"
-        android:layout_marginTop="10dp" />
+        android:layout_marginTop="10dp"/>
 
-	<com.zcw.togglebutton.ToggleButton
-		android:layout_width="54dp"
-		android:layout_height="30dp"
-		android:layout_marginTop="10dp"
-		toggle:isDefaultOn="true"/>
+    <com.zcw.togglebutton.ToggleButton
+        android:layout_width="54dp"
+        android:layout_height="30dp"
+        android:layout_marginTop="10dp"
+        toggle:tbAsDefaultOn="true"/>
 
 </LinearLayout>
