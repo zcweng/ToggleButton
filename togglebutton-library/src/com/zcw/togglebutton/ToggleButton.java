@@ -148,7 +148,11 @@ public class ToggleButton extends View{
 			listener.onToggle(toggleOn);
 		}
 	}
-	
+
+	public boolean isToggleOn() {
+		return toggleOn;
+	}
+
 	/**
 	 * 设置显示成打开样式，不会触发toggle事件
 	 */
