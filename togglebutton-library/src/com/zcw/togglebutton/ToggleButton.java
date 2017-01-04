@@ -328,5 +328,15 @@ public class ToggleButton extends View{
 	public void setAnimate(boolean animate) {
 		this.defaultAnimate = animate;
 	}
-	
+	public void setChecked(boolean isChecked){
+		if (isChecked){
+			toggle();
+		}else {
+			toggleOff();
+		}
+	}
+
+	public boolean isChecked(){
+		return toggleOn;
+	}
 }
