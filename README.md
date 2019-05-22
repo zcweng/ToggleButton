@@ -6,7 +6,7 @@ ToggleButton Widget For Android Developers
 @Deprecated  
 ！！！项目已经停止维护，新项目移至https://github.com/zcweng/SwitchButton ！！！
 
-<img src="https://github.com/zcweng/ToggleButton/blob/master/ToggleButtonSample/21879.gif"/>
+<img src="./images/21879.gif"/>
 
 <b>How To Use</b>
 ```xml
@@ -50,7 +50,7 @@ ToggleButton Widget For Android Developers
 Default Size:width=50dp,height=30dp.
 
 
-<img src="https://github.com/zcweng/ToggleButton/blob/master/ToggleButtonSample/device-2014-08-31-231538.png" width="300" height="500"/>
+<img src="./images/device-2014-08-31-231538.png" width="300" height="500"/>
 
 <b>引用方式</b>
 ```

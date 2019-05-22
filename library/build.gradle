@@ -1,0 +1,28 @@
+buildscript {
+    repositories {
+        jcenter()
+    }
+    dependencies {
+        classpath 'com.github.dcendents:android-maven-gradle-plugin:1.5'
+        classpath 'com.jfrog.bintray.gradle:gradle-bintray-plugin:1.6'
+    }
+}
+apply plugin: 'com.android.library'
+
+android {
+    compileSdkVersion 22
+    buildToolsVersion '22.0.1'
+
+    defaultConfig {
+        minSdkVersion 8
+        targetSdkVersion 22
+    }
+}
+
+dependencies {
+    compile 'com.facebook.rebound:rebound:0.3.8'
+}
+
+if (hasProperty("bintrayUser") || hasProperty("BINTRAY_USER")) {
+    apply from: 'bintray.gradle'
+}

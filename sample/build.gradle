@@ -1,7 +1,7 @@
 apply plugin: 'com.android.application'
 
 dependencies {
-    compile project(':togglebutton-library')
+    compile project(':library')
 }
 
 android {
@@ -16,18 +16,6 @@ android {
     defaultConfig {
         minSdkVersion 8
         targetSdkVersion 22
-    }
-
-    sourceSets {
-        main {
-            manifest.srcFile 'AndroidManifest.xml'
-            java.srcDirs = ['src']
-            resources.srcDirs = ['src']
-            aidl.srcDirs = ['src']
-            renderscript.srcDirs = ['src']
-            res.srcDirs = ['res']
-            assets.srcDirs = ['assets']
-        }
     }
 
     lintOptions {
